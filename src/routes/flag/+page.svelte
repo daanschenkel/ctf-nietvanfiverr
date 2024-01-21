@@ -1,4 +1,11 @@
 <script>
+	import { goto } from '$app/navigation';
+	let item = localStorage.getItem('identity');
+	let identity;
+	if (item) identity = JSON.parse(atob(item));
+	else goto('/login');
+	if (identity.role !== 'admin') goto('/dashboard');
+	if (!localStorage.getItem('emergency')) goto('/dashboard');
 	//reset
 	localStorage.removeItem('identity');
 	localStorage.removeItem('emergency');
