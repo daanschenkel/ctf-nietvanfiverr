@@ -46,6 +46,15 @@
 			<button
 				class="rounded-mdp-2 mt-4 w-full bg-[#154273] p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
 				on:click={() => {
+					goto('/dashboard');
+				}}
+			>
+				Terug
+			</button>
+
+			<button
+				class="rounded-mdp-2 mt-4 w-full bg-[#154273] p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
+				on:click={() => {
 					localStorage.removeItem('identity');
 					goto('/login');
 				}}>Uitloggen</button
