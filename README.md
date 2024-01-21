@@ -1,38 +1,43 @@
-# create-svelte
+![](assets/images/banner.png)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+<img src="assets/images/htb.png" style="margin-left: 20px; zoom: 60%;" align=left />    	<font size="10">Challenge Name</font>
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+​		DD<sup>th</sup> Month YYYY
 
-# create a new project in my-app
-npm create svelte@latest my-app
+​		Challenge Author(s): 
+
+​		
+
+ 
+
+
+
+### Description:
+
+This challenge...
+
+### Objective
+
+Find a logic bug through source code auditing.
+
+### Difficulty:
+
+`easy`
+
+### Flag:
+
+`HTB{s0me_fl4g_her3}`
+
+
+
+# Challenge
+
+
+
+# Solver
+
+```python
+
 ```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
