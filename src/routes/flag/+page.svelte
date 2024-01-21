@@ -1,14 +1,19 @@
 <script>
 	import { goto } from '$app/navigation';
+	let loaded = false;
 	let item = localStorage.getItem('identity');
 	let identity;
 	if (item) identity = JSON.parse(atob(item));
 	else goto('/login');
 	if (identity.role !== 'admin') goto('/dashboard');
 	if (!localStorage.getItem('emergency')) goto('/dashboard');
-	//reset
-	localStorage.removeItem('identity');
-	localStorage.removeItem('emergency');
+
+	if (identity.role === 'admin' && localStorage.getItem('emergency')) {
+		//reset
+		localStorage.removeItem('identity');
+		localStorage.removeItem('emergency');
+		loaded = true;
+	}
 </script>
 
 <div
@@ -18,7 +23,9 @@
 >
 	<h1 class="rip">Je hebt de wereld overgenomen!</h1>
 	<code class="flag">
-		CTF{'{'}m1ssch13n_n13t_d13_v4n_f1v3rr{'}'}
+		{#if loaded}
+			CTF{'{'}m1ssch13n_n13t_d13_v4n_f1v3rr{'}'}
+		{/if}
 	</code>
 </div>
 
