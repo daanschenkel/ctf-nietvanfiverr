@@ -1,0 +1,27 @@
+<script>
+	//reset
+	localStorage.removeItem('identity');
+	localStorage.removeItem('emergency');
+</script>
+
+<div
+	class="flex h-screen w-screen flex-col items-center justify-center
+    bg-[#1D1D1D]
+"
+>
+	<h1 class="rip">Je hebt de wereld overgenomen!</h1>
+	<code class="flag">
+		CTF{'{'}m1ssch13n_n13t_d13_v4n_f1v3rr{'}'}
+	</code>
+</div>
+
+<style>
+	.rip {
+		font-size: 3rem;
+		color: #e5e5e5;
+	}
+	.flag {
+		font-size: 2rem;
+		color: #e5e5e5;
+	}
+</style>
