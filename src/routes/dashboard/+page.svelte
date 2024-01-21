@@ -5,6 +5,8 @@
 	if (item) identity = JSON.parse(atob(item));
 	else goto('/login');
 	let name = identity.identity;
+
+	let lang = localStorage.getItem('lang') || 'en';
 </script>
 
 <div class="min-h-screen bg-[#1D1D1D]">
@@ -14,10 +16,20 @@
 		<img src="/overheid.png" alt="Overheid" class="h-20" />
 
 		<h1 class="mb-4 mt-4 text-xl font-bold">
-			Welkom terug, {@html name}!
+			{#if lang === 'en'}
+				Welcome back, {@html name}!
+			{:else}
+				Welkom terug, {@html name}!
+			{/if}
 		</h1>
 
-		<p class="mb-4 text-xl font-bold">Naam aanpassen</p>
+		<p class="mb-4 text-xl font-bold">
+			{#if lang === 'en'}
+				Edit your name
+			{:else}
+				Naam aanpassen
+			{/if}
+		</p>
 		<input
 			type="text"
 			id="username"
@@ -40,7 +52,11 @@
 					goto('/kaboem');
 				}}
 			>
-				neem de wereld over //TODO: dit moet weg in production!
+				{#if lang === 'en'}
+					Take over the world //TODO: this should be removed in production!
+				{:else}
+					neem de wereld over //TODO: dit moet weg in production!
+				{/if}
 			</button>
 		{/if}
 
@@ -52,7 +68,11 @@
 				goto('/login');
 			}}
 		>
-			Uitloggen
+			{#if lang === 'en'}
+				Log out
+			{:else}
+				Uitloggen
+			{/if}
 		</button>
 	</div>
 </div>

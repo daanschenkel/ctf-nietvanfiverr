@@ -14,6 +14,8 @@
 		localStorage.removeItem('emergency');
 		loaded = true;
 	}
+
+	let lang = localStorage.getItem('lang') || 'en';
 </script>
 
 <div
@@ -21,10 +23,20 @@
     bg-[#1D1D1D]
 "
 >
-	<h1 class="rip">Je hebt de wereld overgenomen!</h1>
+	<h1 class="rip">
+		{#if lang === 'en'}
+			You have taken over the world!
+		{:else}
+			Je hebt de wereld overgenomen!
+		{/if}
+	</h1>
 	<code class="flag">
 		{#if loaded}
-			CTF{'{'}m1ssch13n_n13t_d13_v4n_f1v3rr{'}'}
+			{#if lang === 'en'}
+				CTF{'{'}maybe_n0t_th3_0ne_fr0m_f1v3rr{'}'}
+			{:else}
+				CTF{'{'}m1ssch13n_n13t_d13_v4n_f1v3rr{'}'}
+			{/if}
 		{/if}
 	</code>
 </div>

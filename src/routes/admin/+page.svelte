@@ -9,6 +9,8 @@
 	if (identity.role !== 'admin') allowed = false;
 	else allowed = true;
 	let name = identity.identity;
+
+	let lang = localStorage.getItem('lang') || 'en';
 </script>
 
 <div class="min-h-screen bg-[#1D1D1D]">
@@ -18,26 +20,55 @@
 		<img src="/overheid.png" alt="Overheid" class="h-20" />
 
 		{#if !allowed}
-			<h1 class="mb-4 mt-4 text-xl font-bold">Geen toegang</h1>
-			<p class="mb-4 text-center text-xl">Deze pagina is alleen beschikbaar voor administrators</p>
+			<h1 class="mb-4 mt-4 text-xl font-bold">
+				{#if lang === 'en'}
+					Access denied
+				{:else}
+					Geen toegang
+				{/if}
+			</h1>
+			<p class="mb-4 text-center text-xl">
+				{#if lang === 'en'}
+					This page is only available for administrators
+				{:else}
+					Deze pagina is alleen beschikbaar voor administrators
+				{/if}
+			</p>
 			<button
 				class="rounded-mdp-2 mt-4 w-full bg-[#154273] p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
 				on:click={() => {
 					goto('/dashboard');
-				}}>Terug</button
+				}}
 			>
+				{#if lang === 'en'}
+					Go back
+				{:else}
+					Terug
+				{/if}
+			</button>
 		{:else}
 			<h1 class="mb-4 mt-4 text-xl font-bold">
-				Welkom terug, {name}!
+				{#if lang === 'en'}
+					Welcome back, {name}!
+				{:else}
+					Welkom terug, {name}!
+				{/if}
 			</h1>
-			<p class="mb-4 text-xl font-bold text-red-500">zorg ervoor dat niemand meekijkt</p>
+			<p class="mb-4 text-xl font-bold text-red-500">
+				{#if lang === 'en'}
+					be careful that no one is watching
+				{:else}
+					zorg ervoor dat niemand meekijkt
+				{/if}
+			</p>
 
 			<button
 				class="rounded-mdp-2 mt-4 w-full bg-red-500 p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
 				on:click={() => {
 					//add emergency override to localstorage
 					localStorage.setItem('emergency', 'true');
-					alert('Emergency override is ingeschakeld');
+					if (lang === 'en') alert('Emergency override is enabled');
+					else alert('Emergency override is ingeschakeld');
 				}}
 			>
 				EMERGENCY OVERRIDE
@@ -49,7 +80,11 @@
 					goto('/dashboard');
 				}}
 			>
-				Terug
+				{#if lang === 'en'}
+					Go back
+				{:else}
+					Terug
+				{/if}
 			</button>
 
 			<button
@@ -57,8 +92,14 @@
 				on:click={() => {
 					localStorage.removeItem('identity');
 					goto('/login');
-				}}>Uitloggen</button
+				}}
 			>
+				{#if lang === 'en'}
+					Log out
+				{:else}
+					Uitloggen
+				{/if}
+			</button>
 		{/if}
 	</div>
 </div>

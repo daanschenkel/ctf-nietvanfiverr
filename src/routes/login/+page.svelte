@@ -4,8 +4,8 @@
 	let password = 'password';
 	let fail = false;
 	let item = localStorage.getItem('identity');
-	let identity;
 	if (item) goto('/dashboard');
+	let lang = localStorage.getItem('lang') || 'en';
 </script>
 
 <div class="min-h-screen bg-[#1D1D1D]">
@@ -14,10 +14,22 @@
 	>
 		<img src="/overheid.png" alt="Overheid" class="h-20" />
 
-		<h1 class="mb-4 mt-4 text-xl font-bold">Vul hieronder uw gebruikersnaam en wachtwoord in</h1>
+		<h1 class="mb-4 mt-4 text-xl font-bold">
+			{#if lang === 'en'}
+				Enter your username and password below
+			{:else}
+				Vul hieronder uw gebruikersnaam en wachtwoord in
+			{/if}
+		</h1>
 
 		<div class="flex w-full flex-col">
-			<label for="username" class="mb-2">Gebruikersnaam</label>
+			<label for="username" class="mb-2">
+				{#if lang === 'en'}
+					Username
+				{:else}
+					Gebruikersnaam
+				{/if}
+			</label>
 			<input
 				type="text"
 				id="username"
@@ -26,7 +38,13 @@
 			/>
 		</div>
 		<div class="flex w-full flex-col">
-			<label for="password" class="mb-2">Wachtwoord</label>
+			<label for="password" class="mb-2">
+				{#if lang === 'en'}
+					Password
+				{:else}
+					Wachtwoord
+				{/if}
+			</label>
 			<input
 				type="password"
 				id="password"
@@ -36,7 +54,13 @@
 		</div>
 
 		{#if fail}
-			<p class="text-red-500">Gebruikersnaam of wachtwoord is onjuist</p>
+			<p class="text-red-500">
+				{#if lang === 'en'}
+					Username or password is incorrect
+				{:else}
+					Gebruikersnaam of wachtwoord is onjuist
+				{/if}
+			</p>
 		{/if}
 
 		<button
@@ -67,7 +91,11 @@
 				}
 			}}
 		>
-			Inloggen
+			{#if lang === 'en'}
+				Sign in
+			{:else}
+				Inloggen
+			{/if}
 		</button>
 	</div>
 </div>
