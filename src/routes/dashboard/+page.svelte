@@ -14,7 +14,7 @@
 		<img src="/overheid.png" alt="Overheid" class="h-20" />
 
 		<h1 class="mb-4 mt-4 text-xl font-bold">
-			Welkom terug, {name}!
+			Welkom terug, {@html name}!
 		</h1>
 
 		<p class="mb-4 text-xl font-bold">Naam aanpassen</p>
