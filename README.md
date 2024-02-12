@@ -1,38 +1,47 @@
-# create-svelte
+![](assets/images/banner.png)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+<img src="assets/images/htb.png" style="margin-left: 20px; zoom: 60%;" align=left />    	<font size="10">Hack the Government</font>
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+​		21<sup>th</sup> 01 2024
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+​		Challenge Author(s): Danny (https://daanschenkel.nl)
 
-## Developing
+​		
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+ 
 
-```bash
-npm run dev
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
 
-## Building
+### Description:
 
-To create a production version of your app:
+The government has done a redesign of their website, but they might not have hired the best developers. You are (fill in a random world leader here) and you want to log in to the government's admin panel to see what they are up to.
 
-```bash
-npm run build
-```
+### Objective
 
-You can preview the production build with `npm run preview`.
+Gain access to the admin panel by editing the identity cookie
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+### Difficulty:
+
+`easy`
+
+### Flag:
+
+`CTF{maybe_n0t_th3_0ne_fr0m_f1v3rr}`
+
+
+
+# Challenge
+1. Read the info and sign in
+2. Find the /admin page, realise it needs auth
+3. Find the localStorage entry that contains the authentication (possibly from the edit name field)
+4. Decode, change and Base64 encode again
+5. Go to the admin page and enable the emergency override
+6. Take over the world!
+
+
+
+# Solver
+
+Read the challenge above
