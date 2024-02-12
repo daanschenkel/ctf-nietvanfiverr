@@ -14,7 +14,7 @@
 			{#if lang === 'en'}
 				CTF: It's fine, right?
 			{:else}
-				CTF: It's fine, right?
+				CTF: Prima, toch?
 			{/if}
 		</h1>
 		<button
