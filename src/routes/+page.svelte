@@ -12,9 +12,9 @@
 
 		<h1 class="mb-4 mt-4 text-xl font-bold">
 			{#if lang === 'en'}
-				CTF: Maybe not the one from Fiverr
+				CTF: It's fine, right?
 			{:else}
-				CTF: Misschien niet die van Fiverr
+				CTF: It's fine, right?
 			{/if}
 		</h1>
 		<button
