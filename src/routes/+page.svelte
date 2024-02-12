@@ -1,7 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let lang = localStorage.getItem('lang') || 'en';
+	export let data;
+	let lang = data.lang;
 </script>
 
 <div class="min-h-screen bg-[#1D1D1D]">
@@ -21,10 +22,10 @@
 			class="rounded-mdp-2 mb-3 mt-4 w-full bg-[#154273] p-2 text-center font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
 			on:click={() => {
 				if (lang === 'en') {
-					localStorage.setItem('lang', 'nl');
+					document.cookie = 'lang=nl';
 					lang = 'nl';
 				} else {
-					localStorage.setItem('lang', 'en');
+					document.cookie = 'lang=en';
 					lang = 'en';
 				}
 				location.reload();

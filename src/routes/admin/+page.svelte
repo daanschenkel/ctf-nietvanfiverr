@@ -1,16 +1,8 @@
 <script>
 	import { goto } from '$app/navigation';
-	let item = localStorage.getItem('identity');
-	let identity;
-	if (item) identity = JSON.parse(atob(item));
-	else goto('/login');
-
-	let allowed = false;
-	if (identity.role !== 'admin') allowed = false;
-	else allowed = true;
-	let name = identity.identity;
-
-	let lang = localStorage.getItem('lang') || 'en';
+	import { enhance } from '$app/forms';
+	export let data;
+	let lang = data.lang;
 </script>
 
 <div class="min-h-screen bg-[#1D1D1D]">
@@ -19,7 +11,7 @@
 	>
 		<img src="/overheid.png" alt="Overheid" class="h-20" />
 
-		{#if !allowed}
+		{#if !data.access}
 			<h1 class="mb-4 mt-4 text-xl font-bold">
 				{#if lang === 'en'}
 					Access denied
@@ -49,9 +41,9 @@
 		{:else}
 			<h1 class="mb-4 mt-4 text-xl font-bold">
 				{#if lang === 'en'}
-					Welcome back, {name}!
+					Welcome back, {data.identity}!
 				{:else}
-					Welkom terug, {name}!
+					Welkom terug, {data.identity}!
 				{/if}
 			</h1>
 			<p class="mb-4 text-xl font-bold text-red-500">
@@ -62,17 +54,17 @@
 				{/if}
 			</p>
 
-			<button
-				class="rounded-mdp-2 mt-4 w-full bg-red-500 p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
-				on:click={() => {
-					//add emergency override to localstorage
-					localStorage.setItem('emergency', 'true');
-					if (lang === 'en') alert('Emergency override is enabled');
-					else alert('Emergency override is ingeschakeld');
-				}}
-			>
-				EMERGENCY OVERRIDE
-			</button>
+			<form use:enhance method="POST" action="?/emergency" class="flex w-full flex-col">
+				<button
+					class="rounded-mdp-2 mt-4 w-full bg-red-500 p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
+				>
+					{#if data.emergency}
+						OVERRIDE ENABLED
+					{:else}
+						EMERGENCY OVERRIDE
+					{/if}</button
+				>
+			</form>
 
 			<button
 				class="rounded-mdp-2 mt-4 w-full bg-[#154273] p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
@@ -84,20 +76,6 @@
 					Go back
 				{:else}
 					Terug
-				{/if}
-			</button>
-
-			<button
-				class="rounded-mdp-2 mt-4 w-full bg-[#154273] p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
-				on:click={() => {
-					localStorage.removeItem('identity');
-					goto('/login');
-				}}
-			>
-				{#if lang === 'en'}
-					Log out
-				{:else}
-					Uitloggen
 				{/if}
 			</button>
 		{/if}

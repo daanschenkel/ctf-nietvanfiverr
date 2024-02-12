@@ -1,12 +1,9 @@
 <script>
+	export let data;
 	import { goto } from '$app/navigation';
-	let item = localStorage.getItem('identity');
-	let identity;
-	if (item) identity = JSON.parse(atob(item));
-	else goto('/login');
-	let name = identity.identity;
+	import { enhance } from '$app/forms';
 
-	let lang = localStorage.getItem('lang') || 'en';
+	let lang = data.lang;
 </script>
 
 <div class="min-h-screen bg-[#1D1D1D]">
@@ -17,9 +14,9 @@
 
 		<h1 class="mb-4 mt-4 text-xl font-bold">
 			{#if lang === 'en'}
-				Welcome back, {@html name}!
+				Welcome back, {data.identity}!
 			{:else}
-				Welkom terug, {@html name}!
+				Welkom terug, {data.identity}!
 			{/if}
 		</h1>
 
@@ -30,22 +27,16 @@
 				Naam aanpassen
 			{/if}
 		</p>
-		<input
-			type="text"
-			id="username"
-			class="rounded-md border-[1px] bg-[#1D1D1D] p-2 text-[#E5E5E5]"
-			bind:value={name}
-			on:input={(e) => {
-				const identity = {
-					...JSON.parse(atob(localStorage.getItem('identity'))),
-					identity: e.target.value
-				};
-				const encoded = btoa(JSON.stringify(identity));
-				localStorage.setItem('identity', encoded);
-			}}
-		/>
+		<form use:enhance method="POST" action="?/changeName" class="flex w-full flex-col">
+			<input
+				type="text"
+				name="username"
+				class="rounded-md border-[1px] bg-[#1D1D1D] p-2 text-[#E5E5E5]"
+				value={data.identity}
+			/>
+		</form>
 
-		{#if localStorage.getItem('emergency')}
+		{#if data.emergency}
 			<button
 				class="rounded-mdp-2 mt-4 w-full bg-red-500 p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
 				on:click={() => {
@@ -60,19 +51,17 @@
 			</button>
 		{/if}
 
-		<button
-			class="rounded-mdp-2 mt-4 w-full bg-[#154273] p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]
+		<form use:enhance method="POST" action="?/logout">
+			<button
+				class="rounded-mdp-2 mt-4 w-full bg-[#154273] p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]
         "
-			on:click={() => {
-				localStorage.removeItem('identity');
-				goto('/login');
-			}}
-		>
-			{#if lang === 'en'}
-				Log out
-			{:else}
-				Uitloggen
-			{/if}
-		</button>
+			>
+				{#if lang === 'en'}
+					Log out
+				{:else}
+					Uitloggen
+				{/if}
+			</button>
+		</form>
 	</div>
 </div>
