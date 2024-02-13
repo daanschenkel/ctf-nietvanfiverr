@@ -36,6 +36,7 @@
 			/>
 		</form>
 
+		<!-- Emergency button for admins -->
 		{#if data.emergency}
 			<button
 				class="rounded-mdp-2 mt-4 w-full bg-red-500 p-2 font-bold text-[#E5E5E5] transition-all duration-200 hover:bg-[#1D1D1D]"
@@ -50,6 +51,7 @@
 				{/if}
 			</button>
 		{/if}
+		<!-- End of emergency button for admins -->
 
 		<form use:enhance method="POST" action="?/logout">
 			<button
